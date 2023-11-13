@@ -1,14 +1,14 @@
 {
   "name": "pythonicjs",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": "A nodejs library for those that like python",
-  "main": "index.js",
+  "main": "pythonicjs.js",
   "dependencies": {
-    "underscore": "^1.9.1"
+    "chai": "^4.3.10",
+    "mocha": "^10.2.0"
   },
-  "devDependencies": {},
   "scripts": {
-    "test": "node test.js"
+    "test": "node pythonicjsTest.js"
   },
   "repository": {
     "type": "git",
@@ -16,10 +16,10 @@
   },
   "keywords": [
     "pythonicjs",
-    "pythonicnode",
-    "pythonista"
+    "pythonicnodejs",
+    "pythonic javascript"
   ],
-  "author": "Krishna <qrishna>",
+  "author": "Krishna Bhattarai<qrishna>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Qrishna/pythonicjs/issues"
