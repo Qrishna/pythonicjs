@@ -53,6 +53,7 @@
     }
 
     self.max = function (list) {
+
         if (!Array.isArray(list) || list.length === 0) {
             throw new Error('Input must be a non-empty array');
         }
@@ -85,6 +86,9 @@
     }
 
     self.sorted = function (iterable, key = null, reverse = false) {
+        if (self.is_empty(iterable) && type(iterable) === 'array'){
+            return []
+        }
         const compareFnArray = (a, b) => (reverse ? b - a : a - b);
         const compareFnObject = (a, b) => (reverse ? b.localeCompare(a) : a.localeCompare(b))
 
@@ -102,7 +106,11 @@
     }
 
     self.flatten = function (list) {
-        return list.flat()
+        return list.reduce((acc, current) => acc.concat(Array.isArray(current) ? self.flatten(current) : current), []);
+    }
+
+    self.is_array = function(some_object){
+        return self.type(some_object) === 'array'
     }
 
     self.str = function (object) {

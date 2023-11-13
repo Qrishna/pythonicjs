@@ -800,7 +800,586 @@ describe('pythonicjs', () => {
         const result = round(inputNumber);
 
         // Assert
-        expect(result).to.equal(3);
+        expect(result).to.deep.equal(3);
     });
 
+    // Additional Tests for hex function
+  it('hex function returns "0x0" for input 0', () => {
+    // Arrange
+    const inputNumber = 0;
+
+    // Act
+    const result = hex(inputNumber);
+
+    // Assert
+    expect(result).to.equal('0x0');
+  });
+
+  // Additional Tests for random function
+  it('random function returns a random number within the specified range (edge case)', () => {
+    // Arrange
+    const min = 5;
+    const max = 5;
+
+    // Act
+    const result = random(min, max);
+
+    // Assert
+    expect(result).to.equal(5);
+  });
+
+  // Additional Tests for round function
+  it('round function rounds a number to the nearest integer when ndigits is negative', () => {
+    // Arrange
+    const inputNumber = 3.14159;
+
+    // Act
+    const result = round(inputNumber, -1);
+
+    // Assert
+    expect(result).to.equal(0);
+  });
+
+  it('round function returns NaN for invalid input', () => {
+    // Arrange
+    const inputNumber = 'not a number';
+
+    // Act
+    const result = round(inputNumber);
+
+    // Assert
+    expect(result).to.be.NaN;
+  });
+
+  // Additional Tests for map function
+  it('map function returns an empty array for an empty input array', () => {
+    // Arrange
+    const inputArray = [];
+    const square = (num) => num ** 2;
+
+    // Act
+    const result = map(square, inputArray);
+
+    // Assert
+    expect(result).to.be.an('array').that.is.empty;
+  });
+
+  // Additional Tests for invert function
+  it('invert function returns an empty object for an empty input object', () => {
+    // Arrange
+    const inputObject = {};
+
+    // Act
+    const result = invert(inputObject);
+
+    // Assert
+    expect(result).to.be.an('object').that.is.empty;
+  });
+
+  // Additional Tests for print function
+  it('print function handles various input types without errors', () => {
+    // Arrange
+    const values = [1, 'string', { key: 'value' }, [1, 2, 3], true, null, undefined];
+
+    // Act & Assert
+    expect(() => print(...values)).to.not.throw();
+  });
+
+  // Additional Tests for pprintr function
+  it('pprintr function handles various input types without errors', () => {
+    // Arrange
+    const values = [1, 'string', { key: 'value' }, [1, 2, 3], true, null, undefined];
+
+    // Act & Assert
+    expect(() => pprintr(...values)).to.not.throw();
+  });
+
+  // Additional Tests for log function
+  it('log function handles various input types without errors', () => {
+    // Arrange
+    const values = [1, 'string', { key: 'value' }, [1, 2, 3], true, null, undefined];
+
+    // Act & Assert
+    expect(() => log(...values)).to.not.throw();
+  });
+
+  // Additional Tests for abs function
+  it('abs function returns the absolute value of a negative number', () => {
+    // Arrange
+    const inputNumber = -5;
+
+    // Act
+    const result = abs(inputNumber);
+
+    // Assert
+    expect(result).to.equal(5);
+  });
+
+  // Additional Tests for pow function
+  it('pow function returns the correct result for decimal exponents', () => {
+    // Arrange
+    const base = 2;
+    const exponent = 0.5;
+
+    // Act
+    const result = pow(base, exponent);
+
+    // Assert
+    expect(result).to.equal(Math.sqrt(base));
+  });
+
+  // Additional Tests for sum function
+  it('sum function returns 0 for an empty array', () => {
+    // Arrange
+    const inputArray = [];
+
+    // Act
+    const result = sum(inputArray);
+
+    // Assert
+    expect(result).to.equal(0);
+  });
+
+  // Additional Tests for len function
+  it('len function returns 0 for an empty string', () => {
+    // Arrange
+    const inputString = '';
+
+    // Act
+    const result = len(inputString);
+
+    // Assert
+    expect(result).to.equal(0);
+  });
+
+  it('len function returns 0 for an empty array', () => {
+    // Arrange
+    const inputArray = [];
+
+    // Act
+    const result = len(inputArray);
+
+    // Assert
+    expect(result).to.equal(0);
+  });
+
+
+  // Additional Tests for sorted function
+  it('sorted function returns an empty array for an empty array', () => {
+    // Arrange
+    const inputArray = [];
+
+    // Act
+    const result = sorted(inputArray);
+
+    // Assert
+    expect(result).to.deep.equal([]);
+  });
+
+  it('sorted function returns an empty object for an empty object', () => {
+    // Arrange
+    const inputObject = {};
+
+    // Act
+    const result = sorted(inputObject);
+
+    // Assert
+    expect(result).to.deep.equal({});
+  });
+
+  // Additional Tests for flatten function
+  it('flatten function returns an empty array for an empty array', () => {
+    // Arrange
+    const inputArray = [];
+
+    // Act
+    const result = flatten(inputArray);
+
+    // Assert
+    expect(result).to.deep.equal([]);
+  });
+
+  it('flatten function returns a flat array for a nested array', () => {
+    // Arrange
+    const inputArray = [1, [2, [3, 4], 5], 6];
+
+    // Act
+    const result = flatten(inputArray);
+
+    // Assert
+    expect(result).to.deep.equal([1, 2, 3, 4, 5, 6]);
+  });
+
+  // Additional Tests for str function
+  it('str function returns the string representation of an object', () => {
+    // Arrange
+    const inputObject = { key: 'value' };
+
+    // Act
+    const result = str(inputObject);
+
+    // Assert
+    expect(result).to.equal('[object Object]');
+  });
+
+  // Additional Tests for int function
+  it('int function converts a valid string to an integer', () => {
+    // Arrange
+    const inputString = '42';
+
+    // Act
+    const result = int(inputString);
+
+    // Assert
+    expect(result).to.equal(42);
+  });
+
+  it('int function returns NaN for an invalid string', () => {
+    // Arrange
+    const inputString = 'not a number';
+
+    // Act
+    const result = int(inputString);
+
+    // Assert
+    expect(result).to.be.NaN;
+  });
+
+  // Additional Tests for float function
+  it('float function converts a valid string to a float', () => {
+    // Arrange
+    const inputString = '3.14';
+
+    // Act
+    const result = float(inputString);
+
+    // Assert
+    expect(result).to.equal(3.14);
+  });
+
+  it('float function returns NaN for an invalid string', () => {
+    // Arrange
+    const inputString = 'not a number';
+
+    // Act
+    const result = float(inputString);
+
+    // Assert
+    expect(result).to.be.NaN;
+  });
+
+  // Additional Tests for timestamp function
+  it('timestamp function returns a valid ISO timestamp', () => {
+    // Arrange & Act
+    const result = timestamp();
+
+    // Assert
+    expect(result).to.match(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z$/);
+  });
+
+  // Additional Tests for keys and values functions
+  it('keys function returns an empty array for an empty object', () => {
+    // Arrange
+    const inputObject = {};
+
+    // Act
+    const result = keys(inputObject);
+
+    // Assert
+    expect(result).to.deep.equal([]);
+  });
+
+  it('values function returns an empty array for an empty object', () => {
+    // Arrange
+    const inputObject = {};
+
+    // Act
+    const result = values(inputObject);
+
+    // Assert
+    expect(result).to.deep.equal([]);
+  });
+
+  // Additional Tests for copy function
+  it('copy function returns a shallow copy of an array', () => {
+    // Arrange
+    const inputArray = [1, 2, 3];
+
+    // Act
+    const result = copy(inputArray);
+
+    // Assert
+    expect(result).to.deep.equal([1, 2, 3]);
+    expect(result).to.not.equal(inputArray);
+  });
+
+  it('copy function returns a shallow copy of an object', () => {
+    // Arrange
+    const inputObject = { key: 'value' };
+
+    // Act
+    const result = copy(inputObject);
+
+    // Assert
+    expect(result).to.deep.equal({ key: 'value' });
+    expect(result).to.not.equal(inputObject);
+  });
+
+  // Additional Tests for deepcopy function
+  it('deepcopy function returns a deep copy of an array', () => {
+    // Arrange
+    const inputArray = [1, [2, [3, 4], 5], 6];
+
+    // Act
+    const result = deepcopy(inputArray);
+
+    // Assert
+    expect(result).to.deep.equal([1, [2, [3, 4], 5], 6]);
+    expect(result).to.not.equal(inputArray);
+    expect(result[1]).to.not.equal(inputArray[1]);
+    expect(result[1][1]).to.not.equal(inputArray[1][1]);
+  });
+
+  it('deepcopy function returns a deep copy of an object', () => {
+    // Arrange
+    const inputObject = { key: { nestedKey: 'value' } };
+
+    // Act
+    const result = deepcopy(inputObject);
+
+    // Assert
+    expect(result).to.deep.equal({ key: { nestedKey: 'value' } });
+    expect(result).to.not.equal(inputObject);
+    expect(result.key).to.not.equal(inputObject.key);
+  });
+
+  // Additional Tests for is_empty function
+  it('is_empty function returns true for an empty object', () => {
+    // Arrange
+    const inputObject = {};
+
+    // Act
+    const result = is_empty(inputObject);
+
+    // Assert
+    expect(result).to.be.true;
+  });
+
+  it('is_empty function returns true for an empty array', () => {
+    // Arrange
+    const inputArray = [];
+
+    // Act
+    const result = is_empty(inputArray);
+
+    // Assert
+    expect(result).to.be.true;
+  });
+
+  it('is_empty function returns false for a non-empty object', () => {
+    // Arrange
+    const inputObject = { key: 'value' };
+
+    // Act
+    const result = is_empty(inputObject);
+
+    // Assert
+    expect(result).to.be.false;
+  });
+
+  it('is_empty function returns false for a non-empty array', () => {
+    // Arrange
+    const inputArray = [1, 2, 3];
+
+    // Act
+    const result = is_empty(inputArray);
+
+    // Assert
+    expect(result).to.be.false;
+  });
+
+  // Additional Tests for not function
+  it('not function returns true for a falsy value', () => {
+    // Arrange
+    const falsyValue = 0;
+
+    // Act
+    const result = not(falsyValue);
+
+    // Assert
+    expect(result).to.be.true;
+  });
+
+  it('not function returns false for a truthy value', () => {
+    // Arrange
+    const truthyValue = 'truthy';
+
+    // Act
+    const result = not(truthyValue);
+
+    // Assert
+    expect(result).to.be.false;
+  });
+
+  it('not function returns true for an empty object', () => {
+    // Arrange
+    const inputObject = {};
+
+    // Act
+    const result = not(inputObject);
+
+    // Assert
+    expect(result).to.be.true;
+  });
+
+  it('not function returns false for a non-empty object', () => {
+    // Arrange
+    const inputObject = { key: 'value' };
+
+    // Act
+    const result = not(inputObject);
+
+    // Assert
+    expect(result).to.be.false;
+  });
+
+  it('not function returns true for an empty array', () => {
+    // Arrange
+    const inputArray = [];
+
+    // Act
+    const result = not(inputArray);
+
+    // Assert
+    expect(result).to.be.true;
+  });
+
+  it('not function returns false for a non-empty array', () => {
+    // Arrange
+    const inputArray = [1, 2, 3];
+
+    // Act
+    const result = not(inputArray);
+
+    // Assert
+    expect(result).to.be.false;
+  });
+
+  // Additional Tests for is_null function
+  it('is_null function returns true for null', () => {
+    // Arrange
+    const inputNull = null;
+
+    // Act
+    const result = is_null(inputNull);
+
+    // Assert
+    expect(result).to.be.true;
+  });
+
 })
+
+// Additional Tests for flatten function
+describe('flatten', () => {
+  it('flatten function returns an empty array for an empty array', () => {
+    // Arrange
+    const inputArray = [];
+
+    // Act
+    const result = flatten(inputArray);
+
+    // Assert
+    expect(result).to.deep.equal([]);
+  });
+
+  it('flatten function returns a flat array for a deeply nested array', () => {
+    // Arrange
+    const inputArray = [1, [2, [3, [4, 5], 6], 7], 8];
+
+    // Act
+    const result = flatten(inputArray);
+
+    // Assert
+    expect(result).to.deep.equal([1, 2, 3, 4, 5, 6, 7, 8]);
+  });
+
+  it('flatten function returns a flat array for a mixed nested array', () => {
+    // Arrange
+    const inputArray = [1, [2, 'string', [3, { key: 'value' }], true], null];
+
+    // Act
+    const result = flatten(inputArray);
+
+    // Assert
+    expect(result).to.deep.equal([1, 2, 'string', 3, { key: 'value' }, true, null]);
+  });
+
+  it('flatten function returns the same array for an already flat array', () => {
+    // Arrange
+    const inputArray = [1, 2, 3, 'string', { key: 'value' }, true, null];
+
+    // Act
+    const result = flatten(inputArray);
+
+    // Assert
+    expect(result).to.deep.equal([1, 2, 3, 'string', { key: 'value' }, true, null]);
+  });
+});
+
+// Additional Tests for is_array function
+describe('is_array', () => {
+  it('is_array function returns true for an array', () => {
+    // Arrange
+    const inputArray = [1, 2, 3];
+
+    // Act
+    const result = is_array(inputArray);
+
+    // Assert
+    expect(result).to.be.true;
+  });
+
+  it('is_array function returns false for a non-array object', () => {
+    // Arrange
+    const inputObject = { key: 'value' };
+
+    // Act
+    const result = is_array(inputObject);
+
+    // Assert
+    expect(result).to.be.false;
+  });
+
+  it('is_array function returns false for a string', () => {
+    // Arrange
+    const inputString = 'string';
+
+    // Act
+    const result = is_array(inputString);
+
+    // Assert
+    expect(result).to.be.false;
+  });
+
+  it('is_array function returns false for a number', () => {
+    // Arrange
+    const inputNumber = 42;
+
+    // Act
+    const result = is_array(inputNumber);
+
+    // Assert
+    expect(result).to.be.false;
+  });
+
+  it('is_array function returns false for null', () => {
+    // Arrange
+    const inputNull = null;
+
+    // Act
+    const result = is_array(inputNull);
+
+    // Assert
+    expect(result).to.be.false;
+  });
+});
