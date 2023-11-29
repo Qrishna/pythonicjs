@@ -1383,3 +1383,83 @@ describe('is_array', () => {
     expect(result).to.be.false;
   });
 });
+
+describe('List Methods', () => {
+  let testArray;
+
+  beforeEach(() => {
+    // Initialize a test array before each test
+    testArray = [1, 2, 3];
+  });
+
+  it('append function appends item to the array', () => {
+    // Act
+    append(testArray, 4);
+
+    // Assert
+    expect(testArray).to.deep.equal([1, 2, 3, 4]);
+  });
+
+  it('extend function extends array with iterable elements', () => {
+    // Act
+    extend(testArray, [4, 5]);
+
+    // Assert
+    expect(testArray).to.deep.equal([1, 2, 3, 4, 5]);
+  });
+
+  it('insert function inserts item at the specified index', () => {
+    // Act
+    insert(testArray, 1, 10);
+
+    // Assert
+    expect(testArray).to.deep.equal([1, 10, 2, 3]);
+  });
+
+  it('pop function removes and returns the last element if no index provided', () => {
+    // Act
+    const result = pop(testArray);
+
+    // Assert
+    expect(result).to.equal(3);
+    expect(testArray).to.deep.equal([1, 2]);
+  });
+
+  it('pop function removes and returns element at the specified index if index provided', () => {
+    // Act
+    const result = pop(testArray, 1);
+
+    // Assert
+    expect(result).to.equal(2);
+    expect(testArray).to.deep.equal([1, 3]);
+  });
+
+  it('clear function empties the array', () => {
+    // Act
+    clear(testArray);
+
+    // Assert
+    expect(testArray).to.deep.equal([]);
+  });
+
+  it('count function counts occurrences of an item in the array', () => {
+    // Act
+    const result = count([1, 2, 2, 3, 2], 2);
+
+    // Assert
+    expect(result).to.equal(3);
+  });
+});
+
+describe('String Methods', () => {
+  it('strip function removes leading and trailing whitespaces', () => {
+    // Arrange
+    const inputStr = '  Hello, World!  ';
+
+    // Act
+    const result = strip(inputStr);
+
+    // Assert
+    expect(result).to.equal('Hello, World!');
+  });
+});

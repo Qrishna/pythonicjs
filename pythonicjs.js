@@ -267,5 +267,40 @@
     self.round = function (number, ndigits = null) {
         return ndigits === null ? Math.round(number) : Math.round(number * 10 ** ndigits) / 10 ** ndigits;
     }
+
+    // additional list methods
+    self.append = function (array, item){
+        array.push(item);
+    }
+    self.extend = function (array, iterable){
+        array.push(...[...iterable]);
+    }
+
+    self.insert = function (array, index, item) {
+        array.splice(index, 0, item);
+    }
+
+    self.pop = function (array, index) {
+      return index !== undefined ? array.splice(index, 1)[0] : array.pop();
+    };
+
+    self.clear = function (array){
+      array.splice(0, array.length);
+    }
+
+    self.count = function (array, item) {
+      if (!Array.isArray(array)) {
+        throw new Error('First argument must be an array');
+      }
+      // Using reduce to count the number of occurrences of the item in the array
+      return array.reduce((count, current) => (current === item ? count + 1 : count), 0);
+    };
+
+    // additional string methods
+    self.strip = function (str) {
+      return str.trim();
+    }
+
+
 }());
 
